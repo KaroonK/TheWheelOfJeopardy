@@ -2,7 +2,6 @@ from flask import Flask,render_template, url_for, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
-from flask_jsonpify import jsonify
 import sqlite3
 import math
 
@@ -58,5 +57,5 @@ class Categories(Resource):
 api.add_resource(Categories, '/categories')
 
 if __name__ == '__main__':
-	app.run(port = '5002')
+	app.run(port = '5002', host='0.0.0.0')
 
