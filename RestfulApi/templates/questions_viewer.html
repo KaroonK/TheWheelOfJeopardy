@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Wheel Of Jeopardy (View)</title>
+    <style>
+        details{
+            padding: 10px;
+            cursor: pointer;
+        }
+        .choice{
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            border: solid;
+            border-width: 0.2px;
+        }
+        .choice:hover{
+            background-color: rgb(231, 215, 195);
+        }
+        summary::-webkit-details-marker {
+            color: blue;
+        }
+        summary:focus {
+            outline-style: none;
+        }   
+
+    </style>
+</head>
+<body>
+    <h1>List of existing questions:</h1>
+    </details>
+    {% for question in questions %}
+    <details>
+        <category>&nbsp;&nbsp;&nbsp;&nbsp;Category: {{question[0]}}</category>
+        <summary>{{question[1]}}</summary>
+        <div class="choice">{{question[2]}}</div>
+        <div class="choice">{{question[3]}}</div>
+        <div class="choice">{{question[4]}}</div>
+        <div class="choice">{{question[5]}} (Answer)</div>
+    </details>
+    {% endfor %}
+
+    <a href="/"><h3>Back</h3></a>
+</body>
+</html>
