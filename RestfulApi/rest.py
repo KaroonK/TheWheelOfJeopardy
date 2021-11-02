@@ -2,7 +2,6 @@ from flask import Flask,render_template, url_for, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
-from flask_jsonpify import jsonify
 import sqlite3
 import math
 
@@ -12,13 +11,9 @@ file = "Sqlite3.db"
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
-	QTc_result = False
-	if request.method == 'POST':
-		form = request.form
-		QTc_result = calculate_qtc(form)
-	return render_template('index.html', QTc_result=QTc_result)
+	return render_template('index.html')
 
 def calculate_qtc(form):
 	try:
@@ -32,8 +27,7 @@ def calculate_qtc(form):
 		
 		conn = sqlite3.connect(file)
 		cur = conn.cursor()
-		print(f"INSERT INTO categories VALUES('{category}', '{question}', '{option1}', '{option2}', '{option3}', '{answer}', '{points}')" )
-		query = cur.execute( f"INSERT INTO categories VALUES('{category}', '{question}', '{option1}', '{option2}', '{option3}', '{answer}', '{points}')" )
+		query = cur.execute( f"""INSERT INTO categories VALUES("{category}", "{question}", "{option1}", "{option2}", "{option3}", "{answer}", "{points}")""" )
 		conn.commit()
 		conn.close()
 	except Exception as e:
@@ -55,8 +49,39 @@ class Categories(Resource):
 		query = cur.execute("select * from categories")
 		rows = query.fetchall()
 		return rows
-api.add_resource(Categories, '/categories')
+
+@app.route('/add', methods = ['GET', 'POST'])
+def add():
+    QTc_result = False
+    if request.method == 'POST':
+        form = request.form
+        QTc_result = calculate_qtc(form)
+    return render_template('questions_adder.html', QTc_result=QTc_result)
+
+@app.route('/view', methods=['GET'])
+def view():
+    try:
+        conn = sqlite3.connect(file)
+        cur = conn.cursor()
+        query = cur.execute("select * from categories")
+        questions = query.fetchall()
+        print(str(questions))
+        return render_template('questions_viewer.html', questions=questions)
+    except Exception as e:
+        print(e)
+
+@app.route('/clean', methods = ['GET'])
+def clean():
+    try:
+        conn = sqlite3.connect(file)
+        cur = conn.cursor()
+    except Exception as e:
+        print(e)
+    return ('done')
+
+# api.add_resource(Categories, '/categories')
+
 
 if __name__ == '__main__':
-	app.run(port = '5002')
+	app.run(port = '5002', host='0.0.0.0')
 
