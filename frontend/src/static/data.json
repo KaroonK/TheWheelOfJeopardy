@@ -1,0 +1,53 @@
+[{
+	"categories": ["people", "places", "things", "history", "modern", "math"],
+	"allQuestions": {
+		"people": [{
+			"question": "Who is the president of the United States Of America?",
+			"a": "Barack Obama",
+			"b": "Donald Trump",
+			"c": "Joe Rogan",
+			"d": "Joe Biden",
+			"answer": "d"
+		}],
+		"places": [{
+			"question": "What is the capital of France?",
+			"a": "Nice",
+			"b": "Portugal",
+			"c": "New York",
+			"d": "Paris",
+			"answer": "d"
+		}],
+		"things": [{
+			"question": "What is officially recognized as the sixth wonder of the world?",
+			"a": "Mount Everest",
+			"b": "Machu Picchu",
+			"c": "Taj Mahal",
+			"d": "Eifel Tower",
+			"answer": "b"
+		}],
+		"history": [{
+			"question": "Who was the fourth president of the United States Of America?",
+			"a": "Benjamin Franklin",
+			"b": "James Madison",
+			"c": "John Quincy Adams",
+			"d": "John Adams",
+			"answer": "b"
+		}],
+		"modern": [{
+			"question": "Who is the richest person in the world? (Nov, 2021)",
+			"a": "Elon Musk",
+			"b": "Jeff Bezos",
+			"c": "Bill Gates",
+			"d": "Warren Buffet",
+			"answer": "a"
+		}],
+		"math": [{
+			"question": "Which one of the following is not a Pythagorean triple?",
+			"a": "(3,4,5)",
+			"b": "(12,35,37)",
+			"c": "(16,62,65)",
+			"d": "(20,21,29)",
+			"answer": "c"
+		}]
+	}
+}]
