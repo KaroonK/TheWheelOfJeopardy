@@ -1,0 +1,71 @@
+body{
+    background-color: white;
+    padding:0;
+    margin:0;
+    top:0;
+}
+
+.header{
+    background-color: violet;
+    padding:0;
+    margin:0;
+    text-align: center;
+    top:0;
+    height:6%
+}
+.float-container {
+    border: 3px solid #fff;
+}
+
+.float-play {
+    width: 74%;
+    float: left;
+    border: 0.5px solid red;
+    height:92%;
+}  
+.float-scoreboard {
+    width: 25%;
+    float: right;
+    border: 0.5px solid red;
+    height:92%
+}  
+
+.connectionInfo{
+    top:0px;
+    right:50px;
+    position:fixed;
+}
+
+.spinButton{
+    top:8%;
+    right:27%;
+    height:50px;
+    width: 150px;
+    position:fixed;
+}
+
+.events{
+    bottom: 20px;
+    height:200px;
+    padding-left:15px;
+    border: 2px solid black;
+    border-radius: 25px;
+    background-color: blanchedalmond;
+    width: 70%;
+    left: 2%;
+    position:absolute;
+}
+.eventsNotifier{
+    position:absolute;
+    background-color: white;
+    height:132px;
+    width:97%;
+    bottom:5px;
+    left: 1%;
+    padding: 10px;
+    border-radius: 25px;
+}
+.event{
+    border-bottom: 1px solid black;
+    text-align: center;
+}
