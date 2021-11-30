@@ -1,7 +1,9 @@
 <html>
     <head>
-        <link rel="stylesheet" href="game.css">
+        <link rel="stylesheet" href="css/game.css">
         <script type="text/javascript" src="https://unpkg.com/colyseus.js@^0.14.0/dist/colyseus.js"></script>
+        <script type="text/javascript" src="js/questions.js"></script>
+        <script type="text/javascript" src="js/client.js"></script>
     </head>
     <body>
         <div class="header">
@@ -24,25 +26,12 @@
                 <div><h3>Players:</h3></div>
             </div>
         </div>
-        <!-- Script definition for all logic -->
         <script>
-            function loadData(){
-                var jsonData = ({
-                "categories": ["people", "places", "things", "history", "modern", "math"],
-                "allQuestions": {
-                    "people": [{"question": "Who is the president of the United States Of America?","a": "Barack Obama","b": "Donald Trump","c": "Joe Rogan","d": "Joe Biden","answer":"d"}],
-                    "places": [{"question": "What is the capital of France?","a": "Nice","b": "Portugal","c": "New York","d": "Paris","answer": "d"}],
-                    "things": [{"question": "What is officially recognized as the sixth wonder of the world?","a": "Mount Everest","b": "Machu Picchu","c": "Taj Mahal","d": "Eifel Tower","answer":"b"}],"history": [{"question": "Who was the fourth president of the United States Of America?","a": "George Washington", "b": "James Madison","c": "John Quincy Adams","d": "John Adams","answer": "b"}],
-                    "modern": [{"question": "Who is the richest person in the world? (Nov, 2021)","a": "Elon Musk","b": "Jeff Bezos","c": "Bill Gates","d": "Warren Buffet","answer": "a"}],
-                    "math": [{"question": "Which one of the following is not a Pythagorean triple?","a": "(3,4,5)","b": "(12,35,37)","c": "(16,62,65)","d": "(20,21,29)","answer": "c"}]}
-                });
-                return jsonData
-            }
             
             // load the questions
-            var data = loadData()
-            categories = data['categories']
-            allQuestions  = data['allQuestions']
+            var data = loadData();
+            categories = data['categories'];
+            allQuestions  = data['allQuestions'];
             var client = new Colyseus.Client("ws://localhost:8080");
             var room;
             client.joinOrCreate("game_handler").then(room_instance => {
@@ -59,7 +48,6 @@
                     }
 
                     if (room.state.players.size == 3){
-
                         // add a textbox asking for the number of questions
                         playArea = document.getElementById("playArea")
                         var instruction = document.createElement("div")
@@ -84,7 +72,6 @@
                             startButton.addEventListener("click", function(){
                                 room.send("updateNumberOfQuestions", parseInt(numQuestions.value))
                                 startGame(room)
-                                
                             });
                         }
                     }
@@ -439,7 +426,7 @@
                 }
 
             }
-            //checks if the answer is correct an
+
             function isCorrect(room, choice){
                 value = room.state.question['answer'] == choice
                 if (value == true){

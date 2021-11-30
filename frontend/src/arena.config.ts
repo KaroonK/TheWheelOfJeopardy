@@ -28,7 +28,8 @@ export default Arena({
         //     res.send("It's time to kick ass and chew bubblegum!");
         // });
         // app.use('/', serveIndex(path.join(__dirname, "static"), {'icons': true}))
-        app.use('/', express.static(path.join(__dirname, "static")));
+        // app.use('/', express.static(path.join(__dirname, "static")));
+        app.use('/', express.static(__dirname));
 
         /**
          * Bind @colyseus/monitor
