@@ -1,0 +1,26 @@
+.the_wheel{
+    background-image: url('../images/wheel_back.png');
+    background-position: center;
+    background-repeat: none;
+    width: 438;
+    height: 582px;
+    display: inline-block;
+    text-align: center;
+    margin-left: calc(50vw - 400px);
+    
+}
+
+#canvas{
+    margin-top: 74px;
+}
+
+#spinButton{
+    bottom: 10vh;
+    width: 60%;
+    height: 75px;
+}
+
+.spinInstructions{
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}

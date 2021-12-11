@@ -1,0 +1,74 @@
+/* Join Game Styles: buttons and animations */
+.join_game{
+    background-color: #264653;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    position: absolute;
+    right: -50%;
+}
+
+.join_game_menu{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join_game_menu_elements{
+    width: 100%;
+    height: 75vh;
+    background-color: #264653;
+    text-align: center;
+}
+
+.join_game_menu_title{
+    width: 100%;
+    padding-top: 30px;
+    text-align: center;
+    background-color: #353643;
+    height: 100px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding-bottom: 40px;
+}
+
+.join_game_menu_body{
+    background-color: #353643;
+    height: 400px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;    
+}
+.input{
+    width: 50%;
+    height: 50px;
+    background-color: #353643;
+    color:white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-style: solid;
+    border-bottom-color: coral;
+}
+.input:focus, textarea:focus, select:focus{
+    outline: none;
+    border-bottom-color: yellow;
+}
+
+.submit_button{
+    margin-top:50px;
+    width: 50%;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+.move_left{
+    transform: translateX(-50vw);
+    transition: transform 0.3s ease-in-out;
+}

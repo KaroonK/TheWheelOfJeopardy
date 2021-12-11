@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto:wght@300&display=swap');
+
+.game-container{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: grid;
+    grid-template-areas: 
+    "a b"
+    "a c"
+    "a d";
+}
+
+.question-container{
+    width: 80vw;
+    grid-area: a;
+    color: black;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.question{
+    margin-top: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    border-bottom: 1px solid black;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-bottom-width: 1px;
+}
+
+.choice{
+    width: 60%;
+    height: 100px;
+    line-height: 10vh;
+    font-size: 20px;
+    position: relative;
+    border: 4px solid white;
+}
+
+.choice:hover{
+    /* border-bottom: 1px solid black; */
+    border: 4px solid;
+    --angle: 0deg;
+    border-image: linear-gradient(var(--angle), #12c2e9, #c471ed, #f64f59) 1;
+    animation: 2s rotate ease-in infinite;
+    cursor: pointer;
+}
+@keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+}
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+.scoreboard{
+    width: 20vw;
+    grid-area: b;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    color: black;
+    z-index: 1;
+    grid-gap:10px;
+    height: 200px;
+
+    
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.timer{
+    width: 20vw;
+    grid-area: c;
+    background-color: white;
+    color: black;
+    height: 100px;
+    z-index:1;
+}
+
+.chat{
+    grid-area: d;
+}
+.currentPlayer{
+    border-bottom:0.5px solid black;
+    width: 60%;
+    margin-left: 20%;
+}
+.footer{
+    width: 100vw;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    position: fixed;
+    color:black;
+    top: 75vh;
+    opacity: 0;
+}
+@keyframes choiceHover {
+    0%{
+        border-left: 1px yellow;
+        border-bottom: 0px yellow;
+        border-right: 0px yellow;
+        border-top: 0px yellow;
+    }
+    25%{
+        border-left: 0px yellow;
+        border-bottom: 1px yellow;
+        border-right: 0px yellow;
+        border-top: 0px yellow;
+    }
+    50%{
+        border-left: 0px yellow;
+        border-bottom: 0px yellow;
+        border-right: 1px yellow;
+        border-top: 0px yellow;
+    }
+    75%{
+        border-left: 0px yellow;
+        border-bottom: 0px yellow;
+        border-right: 0px yellow;
+        border-top: 1px yellow;
+    }
+    100%{
+        border-left: 1px yellow;
+        border-bottom: 1px yellow;
+        border-right: 1px yellow;
+        border-top: 1px yellow;
+    }
+}
+.spinnerContainerNode{
+    margin-top: 25vh;
+    width: 100vw;
+}
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    left: calc(50% - 50px);
+    border: 3px solid #f6f;
+    border-top-color: #0e0;
+    border-right-color: #0dd;
+    border-bottom-color: #f90;
+    animation: spinner .6s linear infinite;
+  }
+
+.waitingForPlayers{
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+
+.roomID{
+    width: 100vw;
+}
+
+.startButton{
+    width: 100px;
+    height: 50px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.startButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.numberOfPoints{
+    bottom: 5vh;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    height: 75px;
+}
+
+.buzzer{
+    width: 60%;
+    height: 50px;
+    left: 20vw;
+    z-index: 15;
+}
+#eventNode{
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+.instructionDiv{
+    z-index: 10;
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+    top:0;
+    position:absolute;
+    text-align: center;
+    width:100%;
+}
+
+.timer{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}

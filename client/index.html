@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/colyseus.js@^0.14.0/dist/colyseus.js"></script>
+        <script src="js/colyseus_client.js"></script>
+        <script src="js/game_functions.js"></script>
+        <link rel="stylesheet" href="css/wheel.css" type="text/css">
+        <script src="js/winwheel.js"></script>
+        <script src="js/wheel.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  -->
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/create-game-button.css">
+        <link rel="stylesheet" href="css/join-game-button.css">
+        <link rel="stylesheet" href="css/create-game-menu.css">
+        <link rel="stylesheet" href="css/join-game-menu.css">
+        <link rel="stylesheet" href="css/flip.css">
+        <link rel="stylesheet" href="css/game.css">
+    </head>
+    <body>
+        <!-- <body> -->
+        <div class="title">
+            <div class="app_title">The Wheel of Jeopardy!</div>
+            <div class="app_author">Sixth Sense</div>
+        </div>
+        <div class="flip-card">
+            <div class = "flip-card-inner">
+                <div class = "flip-card-front">
+                    <div class="container_face" id="menu_container">
+                        <div class="create_game" id="create_game_node">
+                            <div class="create_game_menu" id="create_game_menu">
+                                <div class="create_game_menu_elements">
+                                    <div class="create_game_menu_title">
+                                        <div style="font-size: 45px">Welcome!</div>
+                                        <div style="font-size: 25px;">Let's get this game started!</div>
+                                    </div>
+                                    <div class="create_game_menu_body">
+                                        <input id="playerNameCreate" class="input" type="text" placeholder="Enter your name" />
+                                        <br><br>
+                                        <input id="maxNumQuestions" class="input" type="text" placeholder="Max Number of Questions {0 - 30}" />
+                                        <br>
+                                        <button type="submit" class="submit_button" onclick="create_room(document.getElementById('playerNameCreate').value, document.getElementById('maxNumQuestions').value)">Create</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="create-game-button" class="button create-game-button" type="button" onclick="showCreateGameMenu()">Create Game</button>
+                        </div>
+                        <div class="separator" id="separator">
+                            <div class="circle" id="circle">SS</div>
+                        </div>
+                        <div class="join_game" id = "join_game_node">
+                            <button id="join-game-button" class="button join-game-button" type="button" onclick="showJoinGameMenu()">Join Game</button>
+            
+                            <div class="join_game_menu" id="join_game_menu">
+                                <div class="join_game_menu_elements">
+                                    <div class="join_game_menu_title">
+                                        <div style="font-size: 45px">Welcome!</div>
+                                        <div style="font-size: 25px;">Ready to join a game?</div>
+                                    </div>
+                                    <div class="join_game_menu_body">
+                                        <input id="roomJoinName" class="input" type="text" placeholder="Enter your name" />
+                                        <br><br>
+                                        <input id="roomIDJoin" class="input" type="text" placeholder="Enter the room id to join" />
+                                        <br>
+                                        <button type="submit" class="submit_button" onclick="join_room(document.getElementById('roomJoinName').value, document.getElementById('roomIDJoin').value)">Join</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "flip-card-back">
+                    <div class = "game-container" id ="game-container">
+                        <div class = "question-container" id ="question-container">
+                            <!-- <div class = "question" id = "question">Who was the first person on the moon?</div>
+                            <div class = "choice">Me</div>
+                            <div class = "choice">You</div>
+                            <div class = "choice">Your mom</div>
+                            <div class = "choice">Your dad</div> -->
+                            <div id ="eventNode"></div>
+                        </div>
+                        <div class = "scoreboard" id="scoreboard">
+                            <h3>Players:</h3>
+                        </div>
+                        <div class = "timer" id = "timer">
+                            Timer: 
+                            <div id="countdown"></div>
+                        </div>
+                    </div>
+                    <div class = "footer" id="footer">
+                        <div id ="numberOfQuestions"></div>
+                        <div id ="currentCategory"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="wheel" class="w3-modal">
+            <div class="w3-modal-content" id="w3-modal-content">
+              <div class="w3-container" id="w3-container">
+                <span onclick="document.getElementById('wheel').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <p>
+                    <div class = "the_wheel" width="438" height="582">
+                        <div class = "spinInstructions"></div>
+                        <canvas id ="canvas" width="434" height="434">
+                            <p style="color: white; text-align:center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                        </canvas>
+                    
+                        <br><button id="spinButton">Spin</button>
+                        <div class="numberOfPoints" id="numberOfPoints">Please select the number of points for the next question: <br>
+                            <select name="points" id = "points">
+                                <option value = "10">10</option>
+                                <option value = "20">20</option>
+                                <option value = "30">30</option>
+                                <option value = "40">40</option>
+                                <option value = "50">50</option>
+                            </select><br/>
+                            <button id="pointSubmitButton" onclick="update_number_of_points(document.getElementById('points').value)">Submit</button>
+                        </div>
+                    </div>
+                </p>
+              </div>
+            </div>
+          </div>
+        
+        <script>
+            // hides join game div
+            // shows create game menu from the right
+            function showCreateGameMenu(){
+                createGameNode = document.getElementById("create_game_node");
+                joinGameNode = document.getElementById("join_game_node");
+                separatorNode = document.getElementById("separator");
+                createGameNode.className += " move_right";
+                joinGameNode.className += " move_right"
+                separatorNode.className += " move_right"
+            }
+
+            function showJoinGameMenu(){
+                createGameNode = document.getElementById("create_game_node");
+                joinGameNode = document.getElementById("join_game_node");
+                separatorNode = document.getElementById("separator");
+                createGameNode.className += " move_left";
+                joinGameNode.className += " move_left"
+                separatorNode.className += " move_left"
+            }
+        </script>
+    </body>
+</html>
